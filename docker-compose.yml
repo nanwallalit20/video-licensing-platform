@@ -1,0 +1,47 @@
+version: "3"
+
+networks:
+  kalingo:
+
+services:
+  kalingo_httpd:
+    image: httpd:2.4.52-alpine
+    container_name: kalingo_httpd
+    ports:
+      - "8082:80"
+    volumes:
+      - ./:/var/www/html/
+      - ./docker/.env.example:/var/www/html/.env
+      - ./docker/httpd.conf:/usr/local/apache2/conf/httpd.conf
+    depends_on:
+      - mysql
+      - php
+    networks:
+      - kalingo
+
+  php:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    container_name: kalingo_php
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./:/var/www/html/
+      - ./docker/.env.example:/var/www/html/.env
+      - ./docker/httpd.conf:/usr/local/apache2/conf/httpd.conf
+    networks:
+      - kalingo
+
+  mysql:
+    image: mysql:8.0.28
+    container_name: kalingo_mysql
+    ports:
+      - "3309:3306"
+    volumes:
+      - ./docker/mysql_backup:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: 'kalingo'
+      MYSQL_ROOT_PASSWORD: admin
+    networks:
+      - kalingo

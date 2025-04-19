@@ -1,0 +1,23 @@
+{
+  "name": "@deviser/notify",
+  "version": "1.0.7",
+  "description": "Introducing a lightweight and versatile JavaScript library that seamlessly integrates informative popup messages into\nyour web applications. Built with efficiency and flexibility in mind.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deviserops/notify.git"
+  },
+  "keywords": [
+    "Dev"
+  ],
+  "author": "Deviser",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deviserops/notify/issues"
+  },
+  "homepage": "https://github.com/deviserops/notify#readme"
+}
